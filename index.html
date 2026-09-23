@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💍 لعبة النصيب وعروس المستقبل</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: white; text-align: center; padding: 20px; }
+        .card { background: #1e1e1e; padding: 25px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.5); max-width: 450px; margin: auto; border: 1px solid #333; }
+        input { width: 85%; padding: 12px; font-size: 16px; border: 2px solid #ff4b4b; border-radius: 10px; margin-bottom: 15px; text-align: center; background: #2b2b2b; color: white; outline: none; }
+        button { background: linear-gradient(45deg, #ff4b4b, #ff758c); color: white; border: none; padding: 14px 28px; font-size: 18px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 90%; transition: 0.3s; }
+        button:hover { transform: scale(1.03); }
+        .result-box { margin-top: 25px; padding: 20px; border-radius: 15px; display: none; text-align: center; }
+        .electric { background: #FFE600; color: #000; box-shadow: 0 0 25px #FFE600; font-weight: bold; }
+        .laugh { background: #2e7d32; color: white; box-shadow: 0 0 15px rgba(76, 175, 80, 0.4); }
+        .laugh-emojis { font-size: 28px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>💍 مَخبَر النصيب وعروس المستقبل! 🔮</h1>
+        <p>اكتب اسمك يا عريس وسيقوم الذكاء الاصطناعي باختيار عروسة مستقبلك! 😂✨</p>
+        
+        <input type="text" id="groomName" placeholder="🕺 اكتب اسمك هنا للبدء...">
+        <br>
+        <button onclick="playGame()">🎲 اكشف نصيبك الآن!</button>
+
+        <div id="resultBox" class="result-box">
+            <h2 id="brideName"></h2>
+            <p id="brideComment" style="font-size: 18px;"></p>
+            <div id="extraEffect"></div>
+        </div>
+    </div>
+
+    <script>
+        const brides = [
+            { name: "رؤي جمال الخالة 👸✨", comment: "مبروك! الدلع والجمال كله عند الخالة.. جهّز نفسك للزيارات والمناسبات الفخمة!", type: "laugh" },
+            { name: "نادي محمد همزه العجوز 👵☕", comment: "مبروك! الحكمة والخبرة والوقار كله هنا.. جهّز الشاي والونسات الممتعة طوال الليل!", type: "laugh" },
+            { name: "ريان السمحة البتجيب الكهرباء ⚡💡", comment: "مبروك! البيت دائماً منوّر.. ومستحيل تنقطع عندكم الكهرباء أو الطاقة الإيجابية!", type: "electric" }
+        ];
+
+        function playGame() {
+            const name = document.getElementById('groomName').value.trim();
+            if (!name) { 
+                alert('⚠️ يرجى كتابة اسمك أولاً يا عريس!'); 
+                return; 
+            }
+
+            const selected = brides[Math.floor(Math.random() * brides.length)];
+            const box = document.getElementById('resultBox');
+            box.style.display = 'block';
+
+            if (selected.type === 'electric') {
+                box.className = 'result-box electric';
+                document.getElementById('extraEffect').innerHTML = '<div style="margin-top:15px; font-size: 20px;">⚡💡 تحذير: طاقة كهرومغناطيسية عالية! المكان منوّر 220 فولت ⚡💡</div>';
+            } else {
+                box.className = 'result-box laugh';
+                document.getElementById('extraEffect').innerHTML = '<div class="laugh-emojis">😂🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣</div>';
+            }
+
+            document.getElementById('brideName').innerText = "🎉 ألف مبروك يا " + name + "!\n👰 عروسة مستقبلك: " + selected.name;
+            document.getElementById('brideComment').innerText = "💬 " + selected.comment;
+        }
+    </script>
+
+</body>
+</html>
