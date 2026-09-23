@@ -1,65 +1,83 @@
+import random
+import time
 import streamlit as st
 
-# إعدادات الصفحة والتصميم
-st.set_page_config(page_title="مفاجأة خاصة ✨", page_icon="💖", layout="centered")
+# إعدادات الصفحة
+st.set_page_config(
+    page_title="🔮 مَخبَر المهن المستقبلية", page_icon="🎩", layout="centered"
+)
 
-# إضافة تأثيرات CSS
-st.markdown("""
-    <style>
-    .stApp {
-        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-        color: white;
-        text-align: center;
-    }
-    .title-text {
-        font-size: 32px;
-        font-weight: bold;
-        color: #ff758c;
-        margin-top: 20px;
-        font-family: sans-serif;
-    }
-    .glowing-heart {
-        font-size: 110px;
-        margin: 20px 0;
-        display: inline-block;
-        animation: pulse 0.8s infinite alternate, glow 1.5s infinite alternate;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.22); }
-    }
-    @keyframes glow {
-        from { text-shadow: 0 0 10px #ff2a6d, 0 0 20px #ff2a6d, 0 0 30px #ff2a6d; }
-        to { text-shadow: 0 0 20px #ff758c, 0 0 40px #ff758c, 0 0 70px #ff758c; }
-    }
-    .card {
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
-        border-radius: 20px;
-        padding: 25px;
-        margin-top: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-    }
-    </style>
-""", unsafe_allow_html=True)
+# عنوان التطبيق ومقدمة ممتعة
+st.title("🔮 مَخبَر التنبؤ بالمهن!")
+st.write(
+    "اكتب اسمك في الأسفل وسيقوم الذكاء الاصطناعي الخارق بتحليل شخصيتك واكتشاف مهنتك المستقبلية بدقة! 😂✨"
+)
 
-st.markdown('<div class="title-text">✨ لديك رسالة سحرية جديدة ✨</div>', unsafe_allow_html=True)
-st.markdown('<div class="glowing-heart">💖</div>', unsafe_allow_html=True)
+# ادخال الاسم
+name = st.text_input("👤 اكتب اسمك هنا للبدء:", placeholder="مثلاً: محمد أو سارة")
 
-name = st.text_input("اكتب اسمك هنا للاستلام:", placeholder="مثلاً: أحمد")
+# زر التشغيل
+if st.button("🎲 اكتشف مهنتي المستقبلية الآن!"):
+    if not name.strip():
+        st.warning("⚠️ يرجى كتابة اسمك أولاً قبل التشغيل!")
+    else:
+        # إضافة تأثير التحليل
+        with st.spinner("جاري قراءة أفكارك وتحليل البلورة السحرية... 🧠⚡"):
+            time.sleep(1.5)  # إضافة تأخير ممتع للانتظار
 
-if name:
-    st.balloons()
-    st.markdown(f"""
-        <div class="card">
-            <h2 style="color: #ff758c;">أهلاً بك يا {name}! 👋✨</h2>
-            <p style="font-size: 20px; line-height: 1.6;">
-                أنشأت هذا الكود خصيصاً لأجلك.. أردت فقط أن أتمنى لك يوماً جميلاً مليئاً بالسعادة والنجاح! 🚀🔥
-            </p>
-        </div>
-    """, unsafe_allow_html=True)
+        # قائمة المهن (حقيقية + مضحكة ومزاح)
+        jobs = [
+            {
+                "title": "مهندس برمجة خارق 💻",
+                "comment": "ستكتب كوداً يغير العالم... أو على الأقل تحل مشكلة معقدة بعد 10 محاولات!",
+            },
+            {
+                "title": "مختبر جودة نوم محترف 💤",
+                "comment": "راتبك سيكون مقابل النوم 8 ساعات يومياً لتجربة الوسائد الجديدة! خبير الاسترخاء الأول.",
+            },
+            {
+                "title": "طبيب جراح مشهور 🩺",
+                "comment": "ستنقذ حياة الكثيرين وتصبح الأشهر في مجال الطب، لا تنسى خط الأطباء الشهير!",
+            },
+            {
+                "title": "تذوق شاورما دولي 🌯",
+                "comment": "ستسافر حول العالم لتقييم الثومية ومذاق الشاورما! أفضل مهنة على كوكب الأرض.",
+            },
+            {
+                "title": "رائد فضاء في كوكب المريخ 🚀",
+                "comment": "ستكون أول شخص يفتتح مقهى لشرب الشاي على سطح المريخ!",
+            },
+            {
+                "title": "مترجم لغة القطط والكلاب 🐱🐶",
+                "comment": "ستفهم أخيراً لماذا تحدق القطة في الفراغ عند الساعة 3 فجراً!",
+            },
+            {
+                "title": "طيار مدني ✈️",
+                "comment": "ستحلق فوق السحاب وتأخذنا معك في رحلات استكشافية مجانية!",
+            },
+            {
+                "title": "مستشار متخصص في المماطلة وتأجيل المهام ⏳",
+                "comment": "ستعلم الناس كيف يؤجلون عمل اليوم إلى الشهر القادم بنجاح باهر!",
+            },
+            {
+                "title": "مدرب لياقة بدنية للبطاريق 🐧",
+                "comment": "مهنة صعبة في القطب الجنوبي، لكن البطاريق ستشكرك دائماً على الرشاقة!",
+            },
+            {
+                "title": "مدير قناة يوتيوب للالعاب 🎮",
+                "comment": "ستلعب طوال اليوم وتحصل على ملايين المشتركين والأرباح!",
+            },
+        ]
 
-    if st.button("اضغط هنا لمفاجأة ثانية 🎁"):
-        st.snow()
-        st.toast(f"أنت شخص رائع يا {name}! ⭐")
-      
+        # اختيار مهنة عشوائية
+        selected = random.choice(jobs)
+
+        # ألعاب نارية وتأثيرات الاحتفال
+        st.balloons()
+
+        # عرض النتيجة
+        st.success(f"🎉 أهلاً بك يا **{name}**!")
+        st.markdown(f"### 👔 مهنتك هي: **{selected['title']}**")
+        st.info(f"💬 **التنبؤ:** {selected['comment']}")
+        st.write("---")
+        st.caption("💡 يمكنك الضغط على الزر مرة أخرى لتجربة حظك من جديد!")
